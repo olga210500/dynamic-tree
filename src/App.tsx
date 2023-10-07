@@ -88,7 +88,6 @@ function App() {
       <div ref={containerRef} className="main" >
         <Header onScale={handleScale} onCenter={handleCenter} />
         <div ref={boxRef} className="box" style={style}>
-          <h1 className="level-1 rectangle">CEO</h1>
           <Category name='categories' level={0} />
         </div>
       </div>

@@ -26,15 +26,48 @@ const Categories: React.FC<Category> = ({ name, level }) => {
     };
     const editCategory = () => { };
     const deleteCategory = () => { };
+    const gridStyle = (numberOfColumns: number) => {
+        return { gridTemplateColumns: `repeat(${numberOfColumns}, 1fr)` }
+    };
+
 
     return (
         <div className="container">
+            {level === 0 && <h1 className="level-1 rectangle">CEO</h1>}
+           
+            <div className="categories">
+            <ol className="level-2-wrapper" style={gridStyle(categories.length + 1)}>
+                    {categories.map((Category, index) => (
+                        <>
+                            <li>
+                                <h2 className="level-2 rectangle">{Category.name}</h2>
+
+                                <ol className="level-2-wrapper" style={gridStyle(categories.length)}>
+                                    <Categories key={index} name={Category.name} level={Category.level} />
+                                </ol>
+                            </li>
+                        </>
+
+                    ))}
+                </ol>
             <div className="category_actions">
                 <div className="category_actions_add">
                     <button onClick={addCategory} type="button">
                         +
                     </button>
                 </div>
+                {level !== 0 && <>
+                    <div className="category_actions_edit">
+                        <button onClick={editCategory} type="button">
+                            e
+                        </button>
+                    </div>
+                    <div className="category_actions_delete">
+                        <button onClick={deleteCategory} type="button">
+                            x
+                        </button>
+                    </div>
+                </>}
                 {addNewCategory && <div>
                     <input
                         type="text"
@@ -49,25 +82,7 @@ const Categories: React.FC<Category> = ({ name, level }) => {
                 </div>
                 }
             </div>
-
-            <ul className="level-2-wrapper">
-                {categories.map((Category, index) => (
-
-                    <>
-                        <li>
-                            <h2 className="level-2 rectangle">{Category.name}</h2>
-
-                            <ol className="level-2-wrapper">
-                                <Categories name={Category.name} level={Category.level} />
-                            </ol>
-
-                        </li>
-                    </>
-
-
-                ))}
-
-            </ul>
+            </div>
         </div>
     );
 };
