@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../CategoryComponent/Category.scss";
 import { Category } from "../../models/models";
-
+import '../../icons.scss'
 const Categories: React.FC<Category> = ({ name, level }) => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [addNewCategory, setAddNewCategory] = useState<boolean>(false);
@@ -32,58 +32,61 @@ const Categories: React.FC<Category> = ({ name, level }) => {
 
 
     return (
-        <div className="container">
-            {level === 0 && <h1 className="level-1 rectangle">CEO</h1>}
-           
+        <>
+            <div className="container">
+                <div className="category">
+                    <span className={`level-${level <= 3 ? level + 1 : 4} rectangle custom-text`}>{name}</span>
+                </div>
+                <div className="category_actions">
+                    <div className="category_actions_icon" onClick={addCategory}>
+                        <i className="icon plus-icon"></i>
+                    </div>
+                    {level !== 0 && <>
+                        <div className="category_actions_icon" onClick={editCategory}>
+                            <i className="icon edit-icon"></i>
+
+                        </div>
+                        <div className="category_actions_icon ">
+                            <i className="icon cancel-icon delete"></i>
+                        </div>
+                    </>}
+
+                </div>
+
+            </div>
             <div className="categories">
-            <ol className="level-2-wrapper" style={gridStyle(categories.length + 1)}>
+                <ol className="level-2-wrapper" style={gridStyle(categories.length + (addNewCategory ? 1 : 0))}>
+
                     {categories.map((Category, index) => (
-                        <>
-                            <li>
-                                <h2 className="level-2 rectangle">{Category.name}</h2>
-
-                                <ol className="level-2-wrapper" style={gridStyle(categories.length)}>
-                                    <Categories key={index} name={Category.name} level={Category.level} />
-                                </ol>
-                            </li>
-                        </>
-
+                        <li>
+                            <Categories key={index} name={Category.name} level={Category.level} />
+                        </li>
                     ))}
+                    {addNewCategory &&
+                        <div className="container">
+                            <div className="add-category rectangle">
+                                <input
+                                    className="custom-text custom-input"
+                                    type="text"
+                                    value={newCategory}
+                                    onChange={(e) => setNewCategory(e.target.value)}
+                                    placeholder="Add category"
+                                />
+                            </div>
+                            <div className="category_actions">
+                                <div className="category_actions_icon" onClick={cancelCategory}>
+                                    <i className="icon cancel-icon cancel"></i>
+                                </div>
+                                <div className="category_actions_icon" onClick={saveCategory}>
+                                    <i className="icon done-icon done"></i>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </ol>
-            <div className="category_actions">
-                <div className="category_actions_add">
-                    <button onClick={addCategory} type="button">
-                        +
-                    </button>
-                </div>
-                {level !== 0 && <>
-                    <div className="category_actions_edit">
-                        <button onClick={editCategory} type="button">
-                            e
-                        </button>
-                    </div>
-                    <div className="category_actions_delete">
-                        <button onClick={deleteCategory} type="button">
-                            x
-                        </button>
-                    </div>
-                </>}
-                {addNewCategory && <div>
-                    <input
-                        type="text"
-                        value={newCategory}
-                        onChange={(e) => setNewCategory(e.target.value)}
-                        placeholder="Add category"
-                    />
-                    <button onClick={saveCategory} type='button'>Add</button>
 
-                    <button onClick={cancelCategory} type='button'>Cancel</button>
-
-                </div>
-                }
             </div>
-            </div>
-        </div>
+        </>
     );
 };
 

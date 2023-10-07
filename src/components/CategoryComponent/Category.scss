@@ -1,74 +1,43 @@
 $--level-1: #8dccad;
 $--level-2: #f5cc7f;
-$--level-3: #7b9fe0;
-$--level-4: #f27c8d;
+$--level-3: #6cade9;
+$--level-4: #cccc;
+$gray-color-2: #ccc;
 $--black: black;
-ol {
-  list-style: none;
-}
-
-.container {
-  max-width: 1000px;
-  padding: 0 10px;
-  margin: 0 auto;
-  .categories {
-    display: flex;
-    align-items: baseline;
-    &_level-0 {
-      background-color: $--level-1;
-      &:before {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 20px;
-        background: $--black;
-      }
-    }
-    &_actions {
-      display: flex;
-      margin-left: 5px;
-    }
-  }
-}
-.rectangle {
-  position: relative;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* RESET STYLES & HELPER CLASSES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-:root {
-  --level-1: #8dccad;
-  --level-2: #f5cc7f;
-  --level-3: #7b9fe0;
-  --level-4: #f27c8d;
-  --black: black;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-ol {
-  list-style: none;
-}
-
 body {
   margin: 50px 0 100px;
   text-align: center;
   font-family: "Inter", sans-serif;
 }
+ol {
+  list-style: none;
+}
 
 .container {
+  display: flex;
+  align-items: center;
   max-width: 1000px;
   padding: 0 10px;
   margin: 0 auto;
+  align-items: baseline;
+  .category {
+    display: contents;
+  }
+}
+.categories {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  &_level-1 {
+    background-color: $--level-1;
+  }
+}
+.category_actions {
+  display: flex;
+  margin-left: 5px;
+  &_icon {
+    margin-left: 5px;
+  }
 }
 
 .rectangle {
@@ -76,135 +45,85 @@ body {
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
+.container {
+  max-width: 1000px;
+  padding: 0 10px;
+  margin: 0 auto;
+  justify-content: center;
+}
 
-/* LEVEL-1 STYLES
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.rectangle {
+  position: relative;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+.add-category {
+  border-width: 1px;
+}
 .level-1 {
-  width: 50%;
-  margin: 0 auto 40px;
-  background: $--level-1;
+  width: 70%;
+  background: inherit;
+  border-style: dashed;
+  border-color: $gray-color-2;
+  border-width: 1px;
 }
 
-.level-1::before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 20px;
-  background: $--black;
-}
-
-/* LEVEL-2 STYLES
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .level-2-wrapper {
   position: relative;
   display: grid;
-}
-
-.level-2-wrapper::before {
-  content: "";
-  position: absolute;
-  top: -20px;
-  left: 25%;
-  width: fit-content;
-  height: 2px;
-  background: wheat;
-}
-
-.level-2-wrapper::after {
-  display: none;
-  content: "";
-  position: absolute;
-  left: -20px;
-  bottom: -20px;
-  width: calc(100% + 20px);
-  height: 2px;
-  background: red;
 }
 
 .level-2-wrapper li {
   position: relative;
 }
 
-.level-2-wrapper > li::before {
-  content: "";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 20px;
-  background: var(--black);
-}
-
 .level-2 {
   width: 70%;
-  margin: 0 auto 40px;
-  background: var(--level-2);
+  margin: 0 0 40px;
+  background: $--level-2;
+}
+.level-3{
+  width: 70%;
+  margin: 0 0 40px;
+  background-color: $--level-3;
+}
+.level-4{
+  width: 70%;
+  margin: 0 0 40px;
+  background-color: $--level-4;
 }
 
-.level-2::before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
+.button-circle {
+  border-radius: 100px;
+  padding: 4px 6px;
+}
+.icon {
   height: 20px;
-  background: var(--black);
-}
-
-.level-2::after {
-  display: none;
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translate(-100%, -50%);
   width: 20px;
-  height: 2px;
-  background: var(--black);
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: center;
+  background-color: $gray-color-2;
+  border-radius: 100px;
+}
+.delete{
+    background-color: rgba(255, 51, 0, 0.897);
 }
 
-@media screen and (max-width: 700px) {
-  .rectangle {
-    padding: 20px 10px;
-  }
+.cancel{
+  background-color: #f5cc7f;
+}
 
-  .level-1,
-  .level-2 {
-    width: 100%;
-  }
+.done{
+  background-color: #8dccad;
+}
+.custom-text{
+  font-size:medium;
+}
+.custom-input{
+  background-color: inherit;
+  border: none;
+  outline: none;
 
-  .level-1 {
-    margin-bottom: 20px;
-  }
-
-  .level-1::before,
-  .level-2-wrapper > li::before {
-    display: none;
-  }
-
-  .level-2-wrapper,
-  .level-2-wrapper::after,
-  .level-2::after {
-    display: block;
-  }
-
-  .level-2-wrapper {
-    width: 90%;
-    margin-left: 10%;
-  }
-
-  .level-2-wrapper::before {
-    left: -20px;
-    width: 2px;
-    height: calc(100% + 40px);
-  }
-
-  .level-2-wrapper > li:not(:first-child) {
-    margin-top: 50px;
-  }
 }

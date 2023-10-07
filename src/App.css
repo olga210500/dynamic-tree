@@ -11,7 +11,8 @@
   position: absolute;
   top: 10%;
   left: 50%;
-  background-color: aqua;
   user-select: none;
+  min-width: 50%;
+
  
 }
